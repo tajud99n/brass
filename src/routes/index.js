@@ -4,6 +4,8 @@ const { loginUser } = require("../controllers/AuthController");
 const { newUser } = require("../controllers/UserController");
 const { creditTransfer, fundWallet } = require("../controllers/WalletController");
 const { http_responder } = require("../utils/http_response");
+const TransactionRouter = require("./Transaction");
+const WalletRouter = require("./Wallet");
 
 // Init router and path
 const router = express.Router();
@@ -19,6 +21,8 @@ router.post("/login", loginUser);
 router.post("/register", newUser);
 router.post("/transfer", authToken, authUser, creditTransfer);
 router.post("/fund", authToken, authUser, fundWallet);
+router.use("/transactions", TransactionRouter);
+router.use("/wallets", WalletRouter);
 
 // Export the base-router
 module.exports = router;

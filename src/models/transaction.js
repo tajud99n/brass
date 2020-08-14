@@ -29,6 +29,8 @@ const transactionsSchema = new mongoose.Schema(
 		},
 		meta: {
 			comment: { type: String },
+			ref: { type: String },
+			proccessor: { type: String },
 			accountNumber: { type: String },
 			accountName: { type: String },
 			bankCode: { type: String },
@@ -52,6 +54,7 @@ const transactionsSchema = new mongoose.Schema(
 			ref: "wallets",
 		},
 		status: { type: String, enum: ["COMPLETED", "PENDING", "FAILED"] },
+		channel: { type: String, enum: ["card", "bank"] },
 		isDeleted: {
 			type: Boolean,
 			default: false,
